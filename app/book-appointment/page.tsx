@@ -149,34 +149,37 @@ export default function BookAppointmentPage() {
 
   if (success) {
     return (
-      <div className="container mx-auto px-4 py-16 max-w-2xl">
-        <div className="bg-green-50 border-2 border-green-500 rounded-lg p-8 text-center">
-          <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Appointment Booked!</h2>
-          <p className="text-gray-600 mb-2">
-            Thank you, {customerName}! Your appointment has been scheduled.
-          </p>
-          <p className="text-gray-700 font-semibold mb-6">
-            {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')} at {selectedTime}
-          </p>
-          <p className="text-sm text-gray-600 mb-6">
-            We'll send you a confirmation at {customerPhone}
-          </p>
-          <a
-            href="/"
-            className="inline-block bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition"
-          >
-            Return to Home
-          </a>
+      <div className="page-wrapper">
+        <div className="container mx-auto px-4 py-16 max-w-2xl">
+          <div className="bg-green-50 border-2 border-green-500 rounded-lg p-8 text-center">
+            <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">Appointment Booked!</h2>
+            <p className="text-gray-600 mb-2">
+              Thank you, {customerName}! Your appointment has been scheduled.
+            </p>
+            <p className="text-gray-700 font-semibold mb-6">
+              {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')} at {selectedTime}
+            </p>
+            <p className="text-sm text-gray-600 mb-6">
+              We'll send you a confirmation at {customerPhone}
+            </p>
+            <a
+              href="/"
+              className="inline-block bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition"
+            >
+              Return to Home
+            </a>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
+    <div className="page-wrapper">
+      <div className="page-container">
       <h1 className="text-4xl font-bold text-gray-800 mb-8">Book an Appointment</h1>
 
       {/* Progress Indicator */}
@@ -453,6 +456,7 @@ export default function BookAppointmentPage() {
           </form>
         </div>
       )}
+      </div>
     </div>
   );
 }

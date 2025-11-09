@@ -107,7 +107,8 @@ export default function MyAppointmentsPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
+    <div className="page-wrapper">
+      <div className="page-container">
       <h1 className="text-4xl font-bold text-gray-800 mb-8">My Appointments</h1>
 
       {/* Search Form */}
@@ -244,6 +245,7 @@ export default function MyAppointmentsPage() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

@@ -25,3 +25,16 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Page wrapper for internal flows - creates visual hierarchy */
+@layer components {
+  .page-wrapper {
+    min-height: calc(100vh - 80px); /* Account for nav height */
+    background: linear-gradient(to bottom, rgb(252 231 243), rgb(255 255 255)); /* pink-50 to white */
+  }
+
+  .page-container {
+    @apply container mx-auto px-4 py-8;
+    max-width: 1024px; /* max-w-4xl equivalent */
+  }
+}
