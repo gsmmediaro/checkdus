@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function ManagementDashboardPage() {
   const [user, setUser] = useState<any>(null);
@@ -67,17 +68,20 @@ export default function ManagementDashboardPage() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">Appointments</h3>
-              <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+          <Link href="/management/appointments" className="group">
+            <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-all border-2 border-transparent hover:border-purple-400">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-800 group-hover:text-purple-600 transition">Appointments</h3>
+                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <p className="text-gray-600 text-sm mb-2">View and manage customer appointments</p>
+              <p className="text-purple-600 text-sm font-semibold">Click to manage →</p>
             </div>
-            <p className="text-gray-600 text-sm">View and manage customer appointments</p>
-          </div>
+          </Link>
 
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-6 opacity-60">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-800">Check-Ins</h3>
               <svg className="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,9 +89,10 @@ export default function ManagementDashboardPage() {
               </svg>
             </div>
             <p className="text-gray-600 text-sm">Monitor walk-in customer check-ins</p>
+            <p className="text-gray-400 text-xs mt-2">Coming soon</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-6 opacity-60">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-800">Messages</h3>
               <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,20 +100,23 @@ export default function ManagementDashboardPage() {
               </svg>
             </div>
             <p className="text-gray-600 text-sm">View customer contact messages</p>
+            <p className="text-gray-400 text-xs mt-2">Coming soon</p>
           </div>
         </div>
 
-        <div className="mt-8 bg-blue-50 border border-blue-300 rounded-lg p-6">
-          <h3 className="font-semibold text-blue-800 mb-2">Dashboard Features Coming Soon</h3>
-          <p className="text-blue-700 text-sm">
-            This dashboard is a placeholder. Future features will include:
+        <div className="mt-8 bg-green-50 border border-green-300 rounded-lg p-6">
+          <h3 className="font-semibold text-green-800 mb-2">✨ New: Admin Appointment Management</h3>
+          <p className="text-green-700 text-sm mb-3">
+            The appointment management system is now live! Features include:
           </p>
-          <ul className="mt-2 text-blue-700 text-sm list-disc list-inside space-y-1">
-            <li>View and manage all appointments</li>
-            <li>Manage technician schedules</li>
-            <li>View customer check-ins in real-time</li>
-            <li>Respond to contact form messages</li>
-            <li>Analytics and reporting</li>
+          <ul className="mt-2 text-green-700 text-sm list-disc list-inside space-y-1">
+            <li>✅ View all appointments with calendar and list views</li>
+            <li>✅ Create manual bookings for walk-in clients</li>
+            <li>✅ Search existing clients or add new ones</li>
+            <li>✅ Filter by status (pending, confirmed, completed, cancelled)</li>
+            <li>✅ Update appointment status with one click</li>
+            <li>✅ Custom time slots with 15-minute intervals</li>
+            <li>✅ Add notes and manage appointment details</li>
           </ul>
         </div>
       </div>
