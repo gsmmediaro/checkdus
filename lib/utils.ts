@@ -48,3 +48,44 @@ export function formatDuration(minutes: number): string {
   const mins = minutes % 60;
   return mins > 0 ? `${hours}h ${mins}min` : `${hours}h`;
 }
+
+/**
+ * Converts 24-hour time (HH:mm) to 12-hour AM/PM format
+ * @param time24 - Time in 24-hour format (e.g., "14:30", "09:00")
+ * @returns Time in 12-hour format (e.g., "2:30 PM", "9:00 AM")
+ */
+export function formatTime12Hour(time24: string): string {
+  if (!time24) return '';
+
+  const [hours24, minutes] = time24.split(':').map(Number);
+
+  if (isNaN(hours24) || isNaN(minutes)) return time24;
+
+  const period = hours24 >= 12 ? 'PM' : 'AM';
+  const hours12 = hours24 % 12 || 12; // Convert 0 to 12 for midnight
+
+  return `${hours12}:${minutes.toString().padStart(2, '0')} ${period}`;
+}
+
+/**
+ * Converts 12-hour AM/PM time to 24-hour format (HH:mm)
+ * @param time12 - Time in 12-hour format (e.g., "2:30 PM", "9:00 AM")
+ * @returns Time in 24-hour format (e.g., "14:30", "09:00")
+ */
+export function formatTime24Hour(time12: string): string {
+  if (!time12) return '';
+
+  const match = time12.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!match) return time12;
+
+  let [, hours, minutes, period] = match;
+  let hours24 = parseInt(hours, 10);
+
+  if (period.toUpperCase() === 'PM' && hours24 !== 12) {
+    hours24 += 12;
+  } else if (period.toUpperCase() === 'AM' && hours24 === 12) {
+    hours24 = 0;
+  }
+
+  return `${hours24.toString().padStart(2, '0')}:${minutes}`;
+}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
-import { validatePhone, formatCurrency } from '@/lib/utils';
+import { validatePhone, formatCurrency, formatTime12Hour } from '@/lib/utils';
 import { format, addDays, startOfDay, setHours, setMinutes } from 'date-fns';
 
 type Service = {
@@ -125,26 +125,65 @@ export default function BookAppointmentPage() {
     setLoading(true);
 
     try {
-      const { error: insertError } = await supabase
+      // Validate all required data before submitting
+      if (!customerName.trim()) {
+        throw new Error('Customer name is required');
+      }
+      if (!customerPhone.trim()) {
+        throw new Error('Phone number is required');
+      }
+      if (selectedServices.length === 0) {
+        throw new Error('Please select at least one service');
+      }
+      if (!selectedDate) {
+        throw new Error('Please select a date');
+      }
+      if (!selectedTime) {
+        throw new Error('Please select a time');
+      }
+
+      console.log('Submitting appointment:', {
+        customer_name: customerName,
+        customer_phone: customerPhone,
+        services: selectedServices,
+        appointment_date: format(selectedDate, 'yyyy-MM-dd'),
+        appointment_time: selectedTime,
+      });
+
+      const { data, error: insertError } = await supabase
         .from('appointments')
         .insert({
           customer_name: customerName,
           customer_phone: customerPhone,
           services: selectedServices,
-          appointment_date: format(selectedDate!, 'yyyy-MM-dd'),
+          appointment_date: format(selectedDate, 'yyyy-MM-dd'),
           appointment_time: selectedTime,
           notes: notes || null,
           status: 'pending',
-        });
+        })
+        .select();
 
-      if (insertError) throw insertError;
+      if (insertError) {
+        console.error('Supabase insert error:', insertError);
+        throw insertError;
+      }
 
+      if (!data || data.length === 0) {
+        console.error('No data returned from insert');
+        throw new Error('Booking failed - no confirmation received');
+      }
+
+      console.log('Appointment created successfully:', data);
       setSuccess(true);
     } catch (err: any) {
+      console.error('Appointment booking error:', err);
       setError(err.message || 'Failed to book appointment. Please try again.');
-    } finally {
       setLoading(false);
+      // Don't set loading to false in finally - keep it true on success
+      return;
     }
+
+    setLoading(false);
   };
 
   if (success) {
@@ -160,7 +199,7 @@ export default function BookAppointmentPage() {
               Thank you, {customerName}! Your appointment has been scheduled.
             </p>
             <p className="text-gray-700 font-semibold mb-6">
-              {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')} at {selectedTime}
+              {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')} at {formatTime12Hour(selectedTime)}
             </p>
             <p className="text-sm text-gray-600 mb-6">
               We'll send you a confirmation at {customerPhone}
@@ -293,9 +332,6 @@ export default function BookAppointmentPage() {
                   <h3 className="font-bold text-lg text-gray-800">{service.name}</h3>
                   <p className="text-gray-600">{service.duration_minutes} minutes</p>
                 </div>
-                <div className="text-pink-600 font-bold text-xl">
-                  {formatCurrency(service.price)}
-                </div>
               </div>
             ))}
           </div>
@@ -359,7 +395,7 @@ export default function BookAppointmentPage() {
                         : 'border-gray-300 hover:border-pink-400 text-gray-700'
                     }`}
                   >
-                    {time}
+                    {formatTime12Hour(time)}
                   </button>
                 ))}
               </div>
@@ -410,7 +446,7 @@ export default function BookAppointmentPage() {
                 </div>
                 <div className="flex justify-between text-gray-700">
                   <span className="font-semibold">Time:</span>
-                  <span>{selectedTime}</span>
+                  <span>{formatTime12Hour(selectedTime)}</span>
                 </div>
                 <div className="flex justify-between text-gray-700">
                   <span className="font-semibold">Name:</span>
@@ -423,16 +459,13 @@ export default function BookAppointmentPage() {
               </div>
               <div className="border-t pt-4">
                 <div className="font-semibold text-gray-700 mb-2">Services:</div>
-                {getSelectedServicesData().map((service) => (
-                  <div key={service.id} className="flex justify-between text-gray-700 mb-1">
-                    <span>{service.name}</span>
-                    <span>{formatCurrency(service.price)}</span>
-                  </div>
-                ))}
-                <div className="flex justify-between text-gray-700 font-semibold text-lg mt-4 pt-4 border-t">
-                  <span>Total:</span>
-                  <span>{formatCurrency(getTotalPrice())}</span>
-                </div>
+                <ul className="space-y-1">
+                  {getSelectedServicesData().map((service) => (
+                    <li key={service.id} className="text-gray-700">
+                      • {service.name}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
