@@ -67,7 +67,7 @@ export default function ManagementDashboardPage() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <Link href="/management/appointments" className="group">
             <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-all border-2 border-transparent hover:border-purple-400">
               <div className="flex items-center justify-between mb-4">
@@ -78,6 +78,19 @@ export default function ManagementDashboardPage() {
               </div>
               <p className="text-gray-600 text-sm mb-2">View and manage customer appointments</p>
               <p className="text-purple-600 text-sm font-semibold">Click to manage →</p>
+            </div>
+          </Link>
+
+          <Link href="/management/customers" className="group">
+            <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-all border-2 border-transparent hover:border-teal-400">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Customers</h3>
+                <svg className="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <p className="text-gray-600 text-sm mb-2">Manage customer profiles & preferences</p>
+              <p className="text-teal-600 text-sm font-semibold">Click to manage →</p>
             </div>
           </Link>
 
@@ -105,19 +118,27 @@ export default function ManagementDashboardPage() {
         </div>
 
         <div className="mt-8 bg-green-50 border border-green-300 rounded-lg p-6">
-          <h3 className="font-semibold text-green-800 mb-2">✨ New: Admin Appointment Management</h3>
-          <p className="text-green-700 text-sm mb-3">
-            The appointment management system is now live! Features include:
-          </p>
-          <ul className="mt-2 text-green-700 text-sm list-disc list-inside space-y-1">
-            <li>✅ View all appointments with calendar and list views</li>
-            <li>✅ Create manual bookings for walk-in clients</li>
-            <li>✅ Search existing clients or add new ones</li>
-            <li>✅ Filter by status (pending, confirmed, completed, cancelled)</li>
-            <li>✅ Update appointment status with one click</li>
-            <li>✅ Custom time slots with 15-minute intervals</li>
-            <li>✅ Add notes and manage appointment details</li>
-          </ul>
+          <h3 className="font-semibold text-green-800 mb-2">✨ New Features Live!</h3>
+
+          <div className="mb-4">
+            <h4 className="font-semibold text-green-800 mb-1">📅 Appointment Management</h4>
+            <ul className="text-green-700 text-sm list-disc list-inside space-y-1 ml-2">
+              <li>View all appointments with calendar and list views</li>
+              <li>Create manual bookings with custom time slots</li>
+              <li>Filter by status and search by customer</li>
+              <li>One-click status updates and management</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-green-800 mb-1">👤 Customer Profiles</h4>
+            <ul className="text-green-700 text-sm list-disc list-inside space-y-1 ml-2">
+              <li>Track detailed nail preferences (shape, length, polish)</li>
+              <li>Record allergies and special instructions</li>
+              <li>View complete appointment history</li>
+              <li>Auto-update last visit date when appointments completed</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
