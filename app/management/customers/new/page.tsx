@@ -86,7 +86,12 @@ export default function NewCustomerPage() {
     setSubmitting(true);
 
     try {
-      const { error: insertError } = await supabase
+      console.log('Creating customer profile:', {
+        customer_name: customerName,
+        customer_phone: customerPhone,
+      });
+
+      const { data, error: insertError } = await supabase
         .from('customer_profiles')
         .insert({
           customer_name: customerName,
@@ -101,18 +106,30 @@ export default function NewCustomerPage() {
           notes: notes || null,
           allergies: allergies || null,
           special_instructions: specialInstructions || null,
-        });
+        })
+        .select();
 
-      if (insertError) throw insertError;
+      if (insertError) {
+        console.error('Supabase insert error:', insertError);
+        throw insertError;
+      }
 
+      if (!data || data.length === 0) {
+        console.error('No data returned from insert');
+        throw new Error('Failed to create customer profile - no confirmation received');
+      }
+
+      console.log('Customer profile created successfully:', data);
       router.push('/management/customers');
     } catch (err: any) {
+      console.error('Customer creation error:', err);
       if (err.code === '23505') {
         setError('A customer with this phone number already exists');
+      } else if (err.code === '42P01') {
+        setError('Database table not found. Please run the customer_profiles schema in Supabase.');
       } else {
         setError(err.message || 'Failed to create customer profile');
       }
-    } finally {
       setSubmitting(false);
     }
   };
