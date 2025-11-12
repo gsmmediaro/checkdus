@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { validatePhone, formatCurrency } from '@/lib/utils';
+import { validatePhone, formatTime12Hour } from '@/lib/utils';
 import { format, parseISO } from 'date-fns';
 
 type Appointment = {
@@ -183,7 +183,7 @@ export default function MyAppointmentsPage() {
                             {format(appointmentDate, 'EEEE, MMMM d, yyyy')}
                           </h3>
                           <p className="text-lg text-gray-600">
-                            {appointment.appointment_time}
+                            {formatTime12Hour(appointment.appointment_time)}
                           </p>
                         </div>
                         <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getStatusColor(appointment.status)}`}>
@@ -193,18 +193,13 @@ export default function MyAppointmentsPage() {
 
                       <div className="border-t pt-4 mb-4">
                         <h4 className="font-semibold text-gray-700 mb-2">Services:</h4>
-                        <div className="space-y-2">
+                        <ul className="space-y-1">
                           {appointmentServices.map((service) => (
-                            <div key={service.id} className="flex justify-between text-gray-700">
-                              <span>{service.name}</span>
-                              <span>{formatCurrency(service.price)}</span>
-                            </div>
+                            <li key={service.id} className="text-gray-700">
+                              • {service.name}
+                            </li>
                           ))}
-                        </div>
-                        <div className="flex justify-between text-gray-800 font-semibold text-lg mt-3 pt-3 border-t">
-                          <span>Total:</span>
-                          <span>{formatCurrency(totalPrice)}</span>
-                        </div>
+                        </ul>
                       </div>
 
                       {appointment.notes && (

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
-import { validatePhone, formatCurrency, formatDuration } from '@/lib/utils';
+import { validatePhone, formatDuration } from '@/lib/utils';
 
 type Service = {
   id: string;
@@ -218,7 +218,6 @@ export default function CheckInPage() {
                   </div>
                 </div>
                 <p className="text-gray-600">{formatDuration(service.duration_minutes)}</p>
-                <p className="text-pink-600 font-bold text-xl">{formatCurrency(service.price)}</p>
               </div>
             ))}
           </div>
@@ -229,10 +228,6 @@ export default function CheckInPage() {
               <div className="flex justify-between text-gray-700">
                 <span>Total Time:</span>
                 <span className="font-semibold">{formatDuration(getTotalDuration())}</span>
-              </div>
-              <div className="flex justify-between text-gray-700">
-                <span>Total Price:</span>
-                <span className="font-semibold">{formatCurrency(getTotalPrice())}</span>
               </div>
             </div>
           )}
@@ -351,21 +346,14 @@ export default function CheckInPage() {
             </div>
 
             <div className="bg-gray-100 p-6 rounded-lg">
-              <h3 className="font-bold text-lg mb-4">Order Summary</h3>
-              <div className="space-y-2 mb-4">
+              <h3 className="font-bold text-lg mb-4">Services Selected</h3>
+              <ul className="space-y-1">
                 {getSelectedServicesData().map((service) => (
-                  <div key={service.id} className="flex justify-between text-gray-700">
-                    <span>{service.name}</span>
-                    <span>{formatCurrency(service.price)}</span>
-                  </div>
+                  <li key={service.id} className="text-gray-700">
+                    • {service.name}
+                  </li>
                 ))}
-              </div>
-              <div className="border-t pt-4">
-                <div className="flex justify-between text-gray-700 font-semibold text-lg">
-                  <span>Total:</span>
-                  <span>{formatCurrency(getTotalPrice())}</span>
-                </div>
-              </div>
+              </ul>
             </div>
 
             <div className="flex gap-4">
