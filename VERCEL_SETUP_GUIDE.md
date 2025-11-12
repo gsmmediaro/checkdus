@@ -49,7 +49,19 @@ These issues require database setup in Supabase:
 - Auto-update triggers to track last visit date
 - RLS policies for customer management
 
-### 1.3 Verify Tables Were Created
+### 1.3 Run the Admin Access Policies
+
+1. Still in SQL Editor, click **New Query**
+2. Open the file `supabase-admin-policies.sql` in this repository
+3. Copy ALL the contents and paste into the SQL Editor
+4. Click **Run**
+
+**What this creates:**
+- RLS policies allowing authenticated admins to view/manage all data
+- Enables the management dashboard to view check-ins, appointments, customers
+- **IMPORTANT:** Without this, admins can't see check-ins in the backend!
+
+### 1.4 Verify Tables Were Created
 
 1. In Supabase, click **Table Editor** in the left sidebar
 2. You should see these tables:
@@ -128,6 +140,10 @@ Wait 1-2 minutes for the deployment to complete.
    - Click **+ New Customer**
    - Fill out the form and submit
    - Should see success and customer appears in list
+5. **Test Check-Ins Management:**
+   - Create a test walk-in check-in from the customer portal
+   - Go to **Check-Ins** in admin dashboard
+   - Should see the check-in with all details
 
 ---
 
@@ -186,13 +202,14 @@ If you're still seeing old bugs (pricing, military time, etc.):
 
 - [ ] Run `supabase-schema.sql` in Supabase SQL Editor
 - [ ] Run `supabase-schema-customer-profiles.sql` in Supabase SQL Editor
+- [ ] Run `supabase-admin-policies.sql` in Supabase SQL Editor (IMPORTANT!)
 - [ ] Verify tables exist in Table Editor
 - [ ] Add `NEXT_PUBLIC_SUPABASE_URL` to Vercel environment variables
 - [ ] Add `NEXT_PUBLIC_SUPABASE_ANON_KEY` to Vercel environment variables
 - [ ] Redeploy in Vercel after adding env variables
 - [ ] Hard refresh browser (Ctrl+Shift+R)
 - [ ] Test booking flow - services load, no pricing, 12-hour time
-- [ ] Test admin panel - create customer, create appointment
+- [ ] Test admin panel - create customer, create appointment, view check-ins
 
 ---
 
