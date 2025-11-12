@@ -269,7 +269,7 @@ export default function NewCustomerPage() {
                   value={preferredStyle}
                   onChange={(e) => setPreferredStyle(e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600"
-                  placeholder="e.g., Natural Finish, French, Gel Extensions"
+                  placeholder="e.g., Natural Finish"
                 />
               </div>
 
@@ -282,7 +282,7 @@ export default function NewCustomerPage() {
                   value={preferredPolish}
                   onChange={(e) => setPreferredPolish(e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600"
-                  placeholder="e.g., DND 650, OPI Lincoln Park After Dark"
+                  placeholder="e.g., DND 650"
                 />
               </div>
             </div>

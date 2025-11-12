@@ -403,6 +403,7 @@ export default function CustomerDetailPage() {
                         onChange={(e) => setNotes(e.target.value)}
                         rows={3}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-600"
+                        placeholder="e.g., She likes it even on the sides; keep same shape and length as previous set"
                       />
                     </div>
                     <div>
