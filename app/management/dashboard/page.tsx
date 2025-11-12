@@ -94,16 +94,18 @@ export default function ManagementDashboardPage() {
             </div>
           </Link>
 
-          <div className="bg-white rounded-lg shadow-md p-6 opacity-60">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">Check-Ins</h3>
-              <svg className="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
+          <Link href="/management/check-ins" className="group">
+            <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-all border-2 border-transparent hover:border-pink-400">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-800 group-hover:text-pink-600 transition">Check-Ins</h3>
+                <svg className="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              </div>
+              <p className="text-gray-600 text-sm mb-2">Monitor walk-in customer check-ins</p>
+              <p className="text-pink-600 text-sm font-semibold">Click to manage →</p>
             </div>
-            <p className="text-gray-600 text-sm">Monitor walk-in customer check-ins</p>
-            <p className="text-gray-400 text-xs mt-2">Coming soon</p>
-          </div>
+          </Link>
 
           <div className="bg-white rounded-lg shadow-md p-6 opacity-60">
             <div className="flex items-center justify-between mb-4">
@@ -130,13 +132,23 @@ export default function ManagementDashboardPage() {
             </ul>
           </div>
 
-          <div>
+          <div className="mb-4">
             <h4 className="font-semibold text-green-800 mb-1">👤 Customer Profiles</h4>
             <ul className="text-green-700 text-sm list-disc list-inside space-y-1 ml-2">
               <li>Track detailed nail preferences (shape, length, polish)</li>
               <li>Record allergies and special instructions</li>
               <li>View complete appointment history</li>
               <li>Auto-update last visit date when appointments completed</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-green-800 mb-1">🚪 Walk-In Check-Ins</h4>
+            <ul className="text-green-700 text-sm list-disc list-inside space-y-1 ml-2">
+              <li>View all walk-in customer check-ins</li>
+              <li>See service selections and assigned technicians</li>
+              <li>Track daily check-in stats and revenue</li>
+              <li>Search by customer name or phone</li>
             </ul>
           </div>
         </div>
