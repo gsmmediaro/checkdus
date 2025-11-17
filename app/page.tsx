@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import BusinessHoursStatus from './components/BusinessHoursStatus';
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
             </div>
             <div className="hidden md:flex items-center gap-8">
               <a href="#services" className="text-gray-700 hover:text-pink-600 font-medium transition-smooth">Services</a>
+              <a href="#deals" className="text-gray-700 hover:text-pink-600 font-medium transition-smooth">Deals</a>
               <a href="#hours" className="text-gray-700 hover:text-pink-600 font-medium transition-smooth">Hours</a>
               <a href="tel:+12394546289" className="text-gray-700 hover:text-pink-600 font-medium transition-smooth">
                 (239) 454-6289
@@ -30,170 +32,303 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section - Premium Split Layout */}
+      {/* Hero Section - Vagaro-Style Booking Widget */}
       <section className="relative overflow-hidden bg-gradient-to-br from-pink-50 via-white to-purple-50">
-        <div className="container mx-auto px-6 py-20 md:py-32">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left: Content */}
-            <div className="space-y-8 animate-fade-in">
-              <div className="inline-block">
-                <span className="px-4 py-2 bg-pink-100 text-pink-700 rounded-full text-sm font-semibold tracking-wide uppercase">
-                  Gulf Coast Town Center
-                </span>
-              </div>
-              <h1 className="text-6xl md:text-7xl font-bold leading-tight">
-                <span className="bg-gradient-to-r from-pink-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  Luxury
-                </span>
-                <br />
-                <span className="text-gray-900">Nail Care</span>
-                <br />
-                <span className="text-gray-700 text-5xl md:text-6xl">Redefined</span>
-              </h1>
-              <p className="text-xl text-gray-600 leading-relaxed max-w-xl">
-                Experience Fort Myers' premier nail spa where artistry meets relaxation.
-                Trusted by <strong className="text-pink-600">500+ clients</strong> with a 4.0★ rating.
-              </p>
+        {/* Decorative Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-pink-300 to-purple-300 rounded-full opacity-10 blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-purple-300 to-pink-300 rounded-full opacity-10 blur-3xl" />
+        </div>
 
-              {/* Enhanced CTA Group */}
-              <div className="flex flex-wrap gap-4">
-                <Link href="/book-appointment" className="btn-primary text-lg px-8 py-4 shadow-xl shadow-pink-200 hover:shadow-2xl hover:shadow-pink-300">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  Book Appointment
-                </Link>
-                <a href="tel:+12394546289" className="btn-outline text-lg px-8 py-4 group">
-                  <svg className="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  Call Us Today
-                </a>
-              </div>
+        <div className="container mx-auto px-6 py-16 md:py-24 relative">
+          <div className="max-w-5xl mx-auto text-center">
+            {/* Live Status Badge */}
+            <div className="mb-6 flex justify-center">
+              <BusinessHoursStatus />
+            </div>
 
-              {/* Social Proof Badges */}
-              <div className="flex items-center gap-6 pt-6 border-t border-gray-200">
-                <div className="flex items-center gap-2">
-                  <div className="flex -space-x-2">
-                    {[...Array(4)].map((_, i) => (
-                      <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 border-2 border-white" />
-                    ))}
+            {/* Main Headline */}
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
+              Book Your Perfect
+              <span className="bg-gradient-to-r from-pink-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"> Nail Experience</span>
+            </h1>
+            <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+              Fort Myers' premier nail spa • 500+ happy clients • 4.0★ rating
+            </p>
+
+            {/* Prominent Booking Search Widget */}
+            <div className="max-w-4xl mx-auto mb-12">
+              <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
+                <div className="grid md:grid-cols-3 gap-4 mb-6">
+                  {/* Service Type */}
+                  <div className="text-left">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Service</label>
+                    <Link href="/book-appointment" className="block w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl hover:border-pink-400 transition-smooth">
+                      <div className="flex items-center justify-between">
+                        <span className="text-gray-600">Select service...</span>
+                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </Link>
                   </div>
-                  <span className="text-sm text-gray-600 ml-2">500+ Happy Clients</span>
+
+                  {/* Date */}
+                  <div className="text-left">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Date</label>
+                    <Link href="/book-appointment" className="block w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl hover:border-pink-400 transition-smooth">
+                      <div className="flex items-center justify-between">
+                        <span className="text-gray-600">Choose date...</span>
+                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Time */}
+                  <div className="text-left">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Time</label>
+                    <Link href="/book-appointment" className="block w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl hover:border-pink-400 transition-smooth">
+                      <div className="flex items-center justify-between">
+                        <span className="text-gray-600">Select time...</span>
+                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
-                <div className="h-8 w-px bg-gray-300" />
-                <div className="flex items-center gap-1">
-                  {[...Array(4)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
-                  <svg className="w-5 h-5 text-gray-300 fill-current" viewBox="0 0 20 20">
-                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+
+                {/* Search Button */}
+                <Link href="/book-appointment" className="btn-primary w-full text-lg py-4 shadow-xl shadow-pink-200">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
-                  <span className="text-sm text-gray-600 ml-2">4.0 Rating</span>
+                  Find Available Times
+                </Link>
+
+                {/* Quick Links */}
+                <div className="mt-6 flex items-center justify-center gap-4 text-sm">
+                  <Link href="/check-in" className="text-gray-600 hover:text-pink-600 font-medium transition-smooth">
+                    Walk-in Check-in
+                  </Link>
+                  <span className="text-gray-300">|</span>
+                  <Link href="/my-appointments" className="text-gray-600 hover:text-pink-600 font-medium transition-smooth">
+                    View My Appointments
+                  </Link>
                 </div>
               </div>
             </div>
 
-            {/* Right: Image with decorative elements */}
-            <div className="relative">
-              {/* Decorative blob */}
-              <div className="absolute -top-10 -right-10 w-72 h-72 bg-gradient-to-br from-pink-300 to-purple-300 rounded-full opacity-20 blur-3xl" />
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <Image
-                  src="/salon-storefront.jpg"
-                  alt="Luxury Nail Spa storefront"
-                  width={600}
-                  height={700}
-                  className="w-full h-auto"
-                  priority
-                />
-                {/* Floating info card overlay */}
-                <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-gray-600 mb-1">Open Today</p>
-                      <p className="text-lg font-bold text-gray-900">9:30 AM – 7:00 PM</p>
-                    </div>
-                    <Link href="/book-appointment" className="bg-pink-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-pink-700 transition-smooth">
-                      Book Now
-                    </Link>
-                  </div>
+            {/* Social Proof Strip */}
+            <div className="flex items-center justify-center gap-8 flex-wrap">
+              <div className="flex items-center gap-2">
+                <div className="flex -space-x-2">
+                  {[...Array(4)].map((_, i) => (
+                    <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 border-2 border-white" />
+                  ))}
                 </div>
+                <span className="text-sm text-gray-600 ml-2 font-medium">500+ Happy Clients</span>
+              </div>
+              <div className="h-8 w-px bg-gray-300" />
+              <div className="flex items-center gap-1">
+                {[...Array(4)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                  </svg>
+                ))}
+                <svg className="w-5 h-5 text-gray-300 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                </svg>
+                <span className="text-sm text-gray-600 ml-2 font-medium">4.0 Rating (315 reviews)</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Action Cards - Enhanced with better spacing */}
-      <section className="section-spacing bg-white">
+      {/* Service Category Pills */}
+      <section className="py-12 bg-white border-b border-gray-100">
         <div className="container mx-auto px-6">
-          <h2 className="heading-md text-center mb-12">Quick Actions</h2>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Check In Now Card */}
-            <Link href="/check-in" className="group">
-              <div className="feature-card text-center">
-                <div className="feature-icon bg-pink-100 group-hover:bg-pink-200">
-                  <svg className="w-10 h-10 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                  </svg>
-                </div>
-                <h3 className="heading-sm">Check In Now</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Walk-in customers: Select your services and check in for immediate attention
-                </p>
-                <span className="text-pink-600 font-semibold group-hover:text-pink-700 inline-flex items-center gap-2 transition-smooth">
-                  Get Started
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </div>
-            </Link>
+          <div className="flex items-center justify-center gap-3 flex-wrap max-w-4xl mx-auto">
+            {[
+              { name: 'Manicures', icon: '💅', color: 'pink' },
+              { name: 'Pedicures', icon: '🦶', color: 'purple' },
+              { name: 'Extensions', icon: '✨', color: 'blue' },
+              { name: 'Waxing', icon: '🌟', color: 'teal' },
+            ].map((category, i) => (
+              <Link
+                key={i}
+                href="/book-appointment"
+                className="px-6 py-3 bg-gray-50 hover:bg-pink-50 border-2 border-gray-200 hover:border-pink-300 rounded-full transition-smooth flex items-center gap-2 font-semibold text-gray-700 hover:text-pink-700"
+              >
+                <span className="text-xl">{category.icon}</span>
+                {category.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Book Appointment Card */}
-            <Link href="/book-appointment" className="group">
-              <div className="feature-card text-center">
-                <div className="feature-icon bg-purple-100 group-hover:bg-purple-200">
-                  <svg className="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="heading-sm">Book Appointment</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Schedule your visit in advance and secure your preferred time slot
-                </p>
-                <span className="text-purple-600 font-semibold group-hover:text-purple-700 inline-flex items-center gap-2 transition-smooth">
-                  Schedule Now
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </div>
-            </Link>
+      {/* Daily Deals Section */}
+      <section id="deals" className="section-spacing bg-gradient-to-b from-white to-pink-50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <span className="text-pink-600 font-semibold tracking-wide uppercase text-sm">Limited Time</span>
+            <h2 className="heading-md mt-3">Daily Deals</h2>
+            <p className="text-subtitle max-w-2xl mx-auto">
+              Exclusive offers and packages available now
+            </p>
+          </div>
 
-            {/* My Appointments Card */}
-            <Link href="/my-appointments" className="group">
-              <div className="feature-card text-center">
-                <div className="feature-icon bg-blue-100 group-hover:bg-blue-200">
-                  <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {[
+              {
+                title: 'New Client Special',
+                discount: '20% OFF',
+                description: 'First visit to Luxury Nail Spa',
+                details: 'Valid for any manicure or pedicure service',
+                badge: 'Popular',
+                color: 'pink',
+              },
+              {
+                title: 'Mani + Pedi Combo',
+                discount: '$10 OFF',
+                description: 'Book both services together',
+                details: 'Save when you bundle manicure and pedicure',
+                badge: 'Best Value',
+                color: 'purple',
+              },
+              {
+                title: 'Happy Hour Special',
+                discount: '15% OFF',
+                description: 'Monday-Friday 2PM-4PM',
+                details: 'All services during happy hours',
+                badge: 'Weekday',
+                color: 'blue',
+              },
+            ].map((deal, i) => (
+              <div key={i} className="card-hover group bg-white border-2 border-pink-100 relative overflow-hidden">
+                {/* Badge */}
+                <div className={`absolute top-4 right-4 px-3 py-1 bg-${deal.color}-100 text-${deal.color}-700 rounded-full text-xs font-bold`}>
+                  {deal.badge}
+                </div>
+
+                {/* Discount */}
+                <div className={`text-center mb-4 pt-4`}>
+                  <div className={`inline-block px-6 py-3 bg-gradient-to-br from-${deal.color}-500 to-${deal.color}-600 rounded-2xl text-white`}>
+                    <span className="text-3xl font-bold">{deal.discount}</span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{deal.title}</h3>
+                  <p className="text-pink-600 font-semibold mb-3">{deal.description}</p>
+                  <p className="text-gray-600 text-sm mb-6">{deal.details}</p>
+
+                  <Link href="/book-appointment" className="btn-primary w-full">
+                    Book Now
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Compact Business Info Cards - Vagaro Style */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Location Card */}
+            <div className="card-hover group">
+              <div className="flex items-start gap-4">
+                <div className="bg-pink-100 p-3 rounded-xl group-hover:bg-pink-200 transition-smooth">
+                  <svg className="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <h3 className="heading-sm">My Appointments</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  View and manage your existing appointments
-                </p>
-                <span className="text-blue-600 font-semibold group-hover:text-blue-700 inline-flex items-center gap-2 transition-smooth">
-                  View All
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
+                <div className="flex-1">
+                  <h3 className="font-bold text-lg text-gray-900 mb-2">Visit Us</h3>
+                  <p className="text-gray-700 text-sm mb-1">10029 Gulf Center Dr #150</p>
+                  <p className="text-gray-700 text-sm mb-2">Fort Myers, FL 33913</p>
+                  <p className="text-gray-500 text-xs italic">Gulf Coast Town Center</p>
+                  <a
+                    href="https://maps.google.com/?q=10029+Gulf+Center+Dr+150+Fort+Myers+FL+33913"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-pink-600 hover:text-pink-700 text-sm font-semibold inline-flex items-center gap-1 mt-2"
+                  >
+                    Get Directions
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
               </div>
-            </Link>
+            </div>
+
+            {/* Contact Card */}
+            <div className="card-hover group">
+              <div className="flex items-start gap-4">
+                <div className="bg-purple-100 p-3 rounded-xl group-hover:bg-purple-200 transition-smooth">
+                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-lg text-gray-900 mb-2">Call Us</h3>
+                  <a href="tel:+12394546289" className="text-pink-600 hover:text-pink-700 font-bold text-xl block transition-smooth mb-2">
+                    (239) 454-6289
+                  </a>
+                  <p className="text-gray-600 text-sm mb-3">For appointments & inquiries</p>
+                  <div className="flex items-center gap-1">
+                    {[...Array(4)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    ))}
+                    <svg className="w-4 h-4 text-gray-300 fill-current" viewBox="0 0 20 20">
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
+                    <span className="text-xs text-gray-600 ml-1">4.0 (315 reviews)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Hours Card */}
+            <div className="card-hover group">
+              <div className="flex items-start gap-4">
+                <div className="bg-blue-100 p-3 rounded-xl group-hover:bg-blue-200 transition-smooth">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-lg text-gray-900 mb-2">Hours</h3>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Mon-Sat:</span>
+                      <span className="text-gray-900 font-medium">9:30 AM – 7:00 PM</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Sunday:</span>
+                      <span className="text-gray-900 font-medium">10:00 AM – 5:00 PM</span>
+                    </div>
+                  </div>
+                  <a href="#hours" className="text-pink-600 hover:text-pink-700 text-sm font-semibold inline-flex items-center gap-1 mt-3">
+                    View Full Schedule
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
