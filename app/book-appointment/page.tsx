@@ -321,31 +321,31 @@ export default function BookAppointmentPage() {
 
       {/* Step 2: Select Services */}
       {step === 2 && (
-        <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Select Services</h2>
+        <div className="card-hover animate-slide-up">
+          <h2 className="heading-sm mb-8">Select Services</h2>
           <div className="space-y-4 mb-8">
             {services.map((service) => (
               <div
                 key={service.id}
                 onClick={() => toggleService(service.id)}
-                className={`p-4 rounded-lg border-2 cursor-pointer transition flex items-center ${
+                className={`p-6 rounded-xl border-2 cursor-pointer transition-smooth flex items-center shadow-md ${
                   selectedServices.includes(service.id)
-                    ? 'border-pink-600 bg-pink-50'
-                    : 'border-gray-300 hover:border-pink-400'
+                    ? 'border-pink-600 bg-pink-50 shadow-lg'
+                    : 'border-gray-300 hover:border-pink-400 hover:shadow-lg hover:-translate-y-1'
                 }`}
               >
-                <div className={`w-6 h-6 rounded border-2 flex items-center justify-center mr-4 flex-shrink-0 ${
-                  selectedServices.includes(service.id) ? 'bg-pink-600 border-pink-600' : 'border-gray-400'
+                <div className={`w-7 h-7 rounded-md border-2 flex items-center justify-center mr-5 flex-shrink-0 transition-smooth ${
+                  selectedServices.includes(service.id) ? 'bg-pink-600 border-pink-600 scale-110' : 'border-gray-400'
                 }`}>
                   {selectedServices.includes(service.id) && (
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                     </svg>
                   )}
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-lg text-gray-800">{service.name}</h3>
-                  <p className="text-gray-600">{service.duration_minutes} minutes</p>
+                  <h3 className="font-bold text-xl text-gray-900 mb-1">{service.name}</h3>
+                  <p className="text-gray-600 font-medium">{service.duration_minutes} minutes</p>
                 </div>
               </div>
             ))}
@@ -354,13 +354,13 @@ export default function BookAppointmentPage() {
           <div className="flex gap-4">
             <button
               onClick={handleBack}
-              className="flex-1 bg-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-400 transition font-semibold"
+              className="btn-outline flex-1 text-lg"
             >
               Back
             </button>
             <button
               onClick={handleNext}
-              className="flex-1 bg-pink-600 text-white py-3 rounded-lg hover:bg-pink-700 transition font-semibold"
+              className="btn-primary flex-1 text-lg"
             >
               Continue to Date & Time
             </button>
@@ -370,44 +370,58 @@ export default function BookAppointmentPage() {
 
       {/* Step 3: Select Date & Time */}
       {step === 3 && (
-        <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Select Date & Time</h2>
+        <div className="card-hover animate-slide-up">
+          <h2 className="heading-sm mb-8">Select Date & Time</h2>
 
-          <div className="mb-8">
-            <h3 className="font-semibold text-gray-700 mb-4">Choose a Date</h3>
-            <div className="grid grid-cols-7 gap-2">
+          <div className="mb-10">
+            <h3 className="font-bold text-lg text-gray-800 mb-5 flex items-center gap-2">
+              <svg className="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Choose a Date
+            </h3>
+            <div className="grid grid-cols-7 gap-3">
               {getAvailableDates().map((date) => (
                 <button
                   key={date.toISOString()}
                   onClick={() => setSelectedDate(date)}
-                  className={`p-3 rounded-lg border-2 transition ${
+                  className={`p-4 rounded-xl border-2 transition-smooth shadow-sm hover:shadow-md ${
                     selectedDate?.toDateString() === date.toDateString()
-                      ? 'border-pink-600 bg-pink-50'
-                      : 'border-gray-300 hover:border-pink-400'
+                      ? 'border-pink-600 bg-pink-600 text-white shadow-lg scale-105'
+                      : 'border-gray-300 hover:border-pink-400 hover:-translate-y-1'
                   }`}
                 >
-                  <div className="text-xs text-gray-600">{format(date, 'EEE')}</div>
-                  <div className="text-lg font-bold">{format(date, 'd')}</div>
-                  <div className="text-xs text-gray-600">{format(date, 'MMM')}</div>
+                  <div className={`text-xs font-medium mb-1 ${selectedDate?.toDateString() === date.toDateString() ? 'text-pink-100' : 'text-gray-600'}`}>
+                    {format(date, 'EEE')}
+                  </div>
+                  <div className={`text-xl font-bold mb-1 ${selectedDate?.toDateString() === date.toDateString() ? 'text-white' : 'text-gray-900'}`}>
+                    {format(date, 'd')}
+                  </div>
+                  <div className={`text-xs font-medium ${selectedDate?.toDateString() === date.toDateString() ? 'text-pink-100' : 'text-gray-600'}`}>
+                    {format(date, 'MMM')}
+                  </div>
                 </button>
               ))}
             </div>
           </div>
 
           {selectedDate && (
-            <div className="mb-8">
-              <h3 className="font-semibold text-gray-700 mb-4">
+            <div className="mb-10 animate-slide-up">
+              <h3 className="font-bold text-lg text-gray-800 mb-5 flex items-center gap-2">
+                <svg className="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
                 Available Times for {format(selectedDate, 'EEEE, MMMM d')}
               </h3>
-              <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
+              <div className="grid grid-cols-4 md:grid-cols-6 gap-3">
                 {getTimeSlots().map((time) => (
                   <button
                     key={time}
                     onClick={() => setSelectedTime(time)}
-                    className={`p-3 rounded-lg border-2 transition font-semibold ${
+                    className={`p-4 rounded-xl border-2 transition-smooth font-bold shadow-sm hover:shadow-md ${
                       selectedTime === time
-                        ? 'border-pink-600 bg-pink-600 text-white'
-                        : 'border-gray-300 hover:border-pink-400 text-gray-700'
+                        ? 'border-pink-600 bg-pink-600 text-white shadow-lg scale-105'
+                        : 'border-gray-300 hover:border-pink-400 text-gray-700 hover:-translate-y-1'
                     }`}
                   >
                     {formatTime12Hour(time)}
@@ -420,13 +434,13 @@ export default function BookAppointmentPage() {
           <div className="flex gap-4">
             <button
               onClick={handleBack}
-              className="flex-1 bg-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-400 transition font-semibold"
+              className="btn-outline flex-1 text-lg"
             >
               Back
             </button>
             <button
               onClick={handleNext}
-              className="flex-1 bg-pink-600 text-white py-3 rounded-lg hover:bg-pink-700 transition font-semibold"
+              className="btn-primary flex-1 text-lg"
             >
               Continue to Notes
             </button>
@@ -436,48 +450,83 @@ export default function BookAppointmentPage() {
 
       {/* Step 4: Additional Notes */}
       {step === 4 && (
-        <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Additional Notes</h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="card-hover animate-slide-up">
+          <h2 className="heading-sm mb-8">Review & Confirm</h2>
+          <form onSubmit={handleSubmit} className="space-y-8">
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Special Requests or Notes <span className="text-gray-500 text-sm">(optional)</span>
+              <label className="form-label">
+                Special Requests or Notes <span className="text-gray-500 text-sm font-normal">(optional)</span>
               </label>
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600"
+                className="form-input"
                 placeholder="Any special requests or preferences?"
               />
+              <p className="text-sm text-gray-500 mt-2">
+                Let us know if you have any specific preferences or requirements
+              </p>
             </div>
 
-            <div className="bg-gray-100 p-6 rounded-lg">
-              <h3 className="font-bold text-lg mb-4">Appointment Summary</h3>
-              <div className="space-y-2 mb-4">
-                <div className="flex justify-between text-gray-700">
-                  <span className="font-semibold">Date:</span>
-                  <span>{selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')}</span>
+            <div className="bg-gradient-to-br from-pink-50 to-purple-50 border-2 border-pink-200 p-8 rounded-xl shadow-md">
+              <h3 className="font-bold text-2xl text-gray-900 mb-6 flex items-center gap-2">
+                <svg className="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                Appointment Summary
+              </h3>
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-start bg-white rounded-lg p-4 shadow-sm">
+                  <span className="font-bold text-gray-700 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Date:
+                  </span>
+                  <span className="font-semibold text-gray-900">{selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')}</span>
                 </div>
-                <div className="flex justify-between text-gray-700">
-                  <span className="font-semibold">Time:</span>
-                  <span>{formatTime12Hour(selectedTime)}</span>
+                <div className="flex justify-between items-start bg-white rounded-lg p-4 shadow-sm">
+                  <span className="font-bold text-gray-700 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Time:
+                  </span>
+                  <span className="font-semibold text-gray-900">{formatTime12Hour(selectedTime)}</span>
                 </div>
-                <div className="flex justify-between text-gray-700">
-                  <span className="font-semibold">Name:</span>
-                  <span>{customerName}</span>
+                <div className="flex justify-between items-start bg-white rounded-lg p-4 shadow-sm">
+                  <span className="font-bold text-gray-700 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    Name:
+                  </span>
+                  <span className="font-semibold text-gray-900">{customerName}</span>
                 </div>
-                <div className="flex justify-between text-gray-700">
-                  <span className="font-semibold">Phone:</span>
-                  <span>{customerPhone}</span>
+                <div className="flex justify-between items-start bg-white rounded-lg p-4 shadow-sm">
+                  <span className="font-bold text-gray-700 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    Phone:
+                  </span>
+                  <span className="font-semibold text-gray-900">{customerPhone}</span>
                 </div>
               </div>
-              <div className="border-t pt-4">
-                <div className="font-semibold text-gray-700 mb-2">Services:</div>
-                <ul className="space-y-1">
+              <div className="border-t-2 border-pink-200 pt-6">
+                <div className="font-bold text-lg text-gray-900 mb-4 flex items-center gap-2">
+                  <svg className="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                  Services Selected:
+                </div>
+                <ul className="space-y-3">
                   {getSelectedServicesData().map((service) => (
-                    <li key={service.id} className="text-gray-700">
-                      • {service.name}
+                    <li key={service.id} className="bg-white rounded-lg p-3 shadow-sm flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-pink-600"></div>
+                      <span className="font-medium text-gray-900">{service.name}</span>
+                      <span className="ml-auto text-sm text-gray-600">{service.duration_minutes} min</span>
                     </li>
                   ))}
                 </ul>
@@ -488,17 +537,32 @@ export default function BookAppointmentPage() {
               <button
                 type="button"
                 onClick={handleBack}
-                className="flex-1 bg-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-400 transition font-semibold"
+                className="btn-outline flex-1 text-lg"
                 disabled={loading}
               >
                 Back
               </button>
               <button
                 type="submit"
-                className="flex-1 bg-pink-600 text-white py-3 rounded-lg hover:bg-pink-700 transition font-semibold disabled:bg-gray-400"
+                className="btn-primary flex-1 text-lg"
                 disabled={loading}
               >
-                {loading ? 'Booking...' : 'Confirm Appointment'}
+                {loading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Booking...
+                  </span>
+                ) : (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Confirm Appointment
+                  </span>
+                )}
               </button>
             </div>
           </form>
