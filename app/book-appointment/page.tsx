@@ -189,24 +189,34 @@ export default function BookAppointmentPage() {
   if (success) {
     return (
       <div className="page-wrapper">
-        <div className="container mx-auto px-4 py-16 max-w-2xl">
-          <div className="bg-green-50 border-2 border-green-500 rounded-lg p-8 text-center">
-            <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">Appointment Booked!</h2>
-            <p className="text-gray-600 mb-2">
-              Thank you, {customerName}! Your appointment has been scheduled.
+        <div className="container mx-auto px-6 py-16 max-w-3xl">
+          <div className="card-hover text-center animate-slide-up">
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
+              <svg className="w-14 h-14 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h2 className="heading-lg text-green-700 mb-4">Appointment Booked!</h2>
+            <p className="text-xl text-gray-700 mb-3">
+              Thank you, <span className="font-bold text-gray-900">{customerName}</span>!
             </p>
-            <p className="text-gray-700 font-semibold mb-6">
-              {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')} at {formatTime12Hour(selectedTime)}
+            <p className="text-gray-600 mb-6">
+              Your appointment has been successfully scheduled.
             </p>
-            <p className="text-sm text-gray-600 mb-6">
-              We'll send you a confirmation at {customerPhone}
+            <div className="bg-pink-50 border-2 border-pink-200 rounded-xl p-6 mb-8">
+              <p className="text-gray-700 font-semibold text-lg mb-2">
+                {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')}
+              </p>
+              <p className="text-pink-600 font-bold text-2xl">
+                {formatTime12Hour(selectedTime)}
+              </p>
+            </div>
+            <p className="text-sm text-gray-600 mb-8">
+              We'll send you a confirmation at <span className="font-semibold">{customerPhone}</span>
             </p>
             <a
               href="/"
-              className="inline-block bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition"
+              className="btn-primary text-lg px-10 py-4"
             >
               Return to Home
             </a>
@@ -219,84 +229,89 @@ export default function BookAppointmentPage() {
   return (
     <div className="page-wrapper">
       <div className="page-container">
-      <h1 className="text-4xl font-bold text-gray-800 mb-8">Book an Appointment</h1>
+      <h1 className="heading-lg text-center mb-12">Book an Appointment</h1>
 
-      {/* Progress Indicator */}
-      <div className="mb-8">
+      {/* Progress Indicator - Enhanced */}
+      <div className="card mb-12">
         <div className="flex items-center justify-between">
-          <div className={`flex items-center ${step >= 1 ? 'text-pink-600' : 'text-gray-400'}`}>
-            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${step >= 1 ? 'bg-pink-600 text-white' : 'bg-gray-300'}`}>
+          <div className={`flex items-center transition-smooth ${step >= 1 ? 'text-pink-600' : 'text-gray-400'}`}>
+            <div className={`w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg shadow-md transition-smooth ${step >= 1 ? 'bg-pink-600 text-white' : 'bg-gray-300'}`}>
               1
             </div>
-            <span className="ml-2 font-semibold text-sm">Your Info</span>
+            <span className="ml-3 font-bold">Your Info</span>
           </div>
-          <div className={`flex-1 h-1 mx-2 ${step >= 2 ? 'bg-pink-600' : 'bg-gray-300'}`}></div>
-          <div className={`flex items-center ${step >= 2 ? 'text-pink-600' : 'text-gray-400'}`}>
-            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${step >= 2 ? 'bg-pink-600 text-white' : 'bg-gray-300'}`}>
+          <div className={`flex-1 h-2 mx-4 rounded-full transition-smooth ${step >= 2 ? 'bg-pink-600' : 'bg-gray-300'}`}></div>
+          <div className={`flex items-center transition-smooth ${step >= 2 ? 'text-pink-600' : 'text-gray-400'}`}>
+            <div className={`w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg shadow-md transition-smooth ${step >= 2 ? 'bg-pink-600 text-white' : 'bg-gray-300'}`}>
               2
             </div>
-            <span className="ml-2 font-semibold text-sm">Services</span>
+            <span className="ml-3 font-bold">Services</span>
           </div>
-          <div className={`flex-1 h-1 mx-2 ${step >= 3 ? 'bg-pink-600' : 'bg-gray-300'}`}></div>
-          <div className={`flex items-center ${step >= 3 ? 'text-pink-600' : 'text-gray-400'}`}>
-            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${step >= 3 ? 'bg-pink-600 text-white' : 'bg-gray-300'}`}>
+          <div className={`flex-1 h-2 mx-4 rounded-full transition-smooth ${step >= 3 ? 'bg-pink-600' : 'bg-gray-300'}`}></div>
+          <div className={`flex items-center transition-smooth ${step >= 3 ? 'text-pink-600' : 'text-gray-400'}`}>
+            <div className={`w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg shadow-md transition-smooth ${step >= 3 ? 'bg-pink-600 text-white' : 'bg-gray-300'}`}>
               3
             </div>
-            <span className="ml-2 font-semibold text-sm">Date & Time</span>
+            <span className="ml-3 font-bold">Date & Time</span>
           </div>
-          <div className={`flex-1 h-1 mx-2 ${step >= 4 ? 'bg-pink-600' : 'bg-gray-300'}`}></div>
-          <div className={`flex items-center ${step >= 4 ? 'text-pink-600' : 'text-gray-400'}`}>
-            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${step >= 4 ? 'bg-pink-600 text-white' : 'bg-gray-300'}`}>
+          <div className={`flex-1 h-2 mx-4 rounded-full transition-smooth ${step >= 4 ? 'bg-pink-600' : 'bg-gray-300'}`}></div>
+          <div className={`flex items-center transition-smooth ${step >= 4 ? 'text-pink-600' : 'text-gray-400'}`}>
+            <div className={`w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg shadow-md transition-smooth ${step >= 4 ? 'bg-pink-600 text-white' : 'bg-gray-300'}`}>
               4
             </div>
-            <span className="ml-2 font-semibold text-sm">Notes</span>
+            <span className="ml-3 font-bold">Notes</span>
           </div>
         </div>
       </div>
 
       {error && (
-        <div className="bg-red-50 border border-red-500 text-red-700 px-4 py-3 rounded mb-4">
-          {error}
+        <div className="card-hover bg-red-50 border-2 border-red-500 mb-8 animate-slide-up">
+          <div className="flex items-start gap-3">
+            <svg className="w-6 h-6 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p className="text-red-700 font-semibold">{error}</p>
+          </div>
         </div>
       )}
 
       {/* Step 1: Customer Information */}
       {step === 1 && (
-        <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Your Information</h2>
-          <div className="space-y-6">
+        <div className="card-hover animate-slide-up">
+          <h2 className="heading-sm mb-8">Your Information</h2>
+          <div className="space-y-8">
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">
+              <label className="form-label">
                 Full Name <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600"
+                className="form-input"
                 placeholder="Enter your full name"
               />
             </div>
 
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">
+              <label className="form-label">
                 Phone Number <span className="text-red-500">*</span>
               </label>
               <input
                 type="tel"
                 value={customerPhone}
                 onChange={(e) => setCustomerPhone(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600"
+                className="form-input"
                 placeholder="(555) 123-4567"
               />
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-gray-500 mt-2">
                 We'll use this to send appointment confirmations and reminders
               </p>
             </div>
 
             <button
               onClick={handleNext}
-              className="w-full bg-pink-600 text-white py-3 rounded-lg hover:bg-pink-700 transition font-semibold"
+              className="btn-primary w-full text-lg"
             >
               Continue to Service Selection
             </button>
