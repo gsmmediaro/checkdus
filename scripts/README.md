@@ -1,5 +1,15 @@
 # Database Setup Scripts
 
+## Common Issues & Fixes
+
+### ❌ Error: "new row violates row-level security policy"
+
+**This means:** Your Supabase tables have Row Level Security (RLS) enabled, but no policies allowing public access.
+
+**Quick Fix:** Run `setup-complete-rls.sql` in Supabase SQL Editor (see instructions below).
+
+---
+
 ## Populating Services
 
 Your booking system needs services data to function. Follow these steps:
@@ -68,14 +78,46 @@ After running the seed script:
 3. Test by visiting `/book-appointment` on your site
 4. Services should now appear in Step 2
 
+## Setting Up Row Level Security (RLS)
+
+**IMPORTANT:** Run this **BEFORE** using the booking system!
+
+### Quick Setup:
+
+1. Go to Supabase → **SQL Editor**
+2. Click **New Query**
+3. Copy contents of `setup-complete-rls.sql`
+4. Paste and click **Run**
+
+This will:
+- ✅ Allow anyone to create appointments
+- ✅ Allow anyone to view services
+- ✅ Allow authenticated users (staff) to manage data
+- ✅ Fix "row-level security policy" errors
+
+### What RLS Policies Do:
+
+| Table | Anonymous Users Can... | Authenticated Users Can... |
+|-------|------------------------|---------------------------|
+| **appointments** | Create, View | Create, View, Update, Delete |
+| **services** | View only | Create, View, Update, Delete |
+| **walk_ins** | Create, View | Create, View, Update, Delete |
+| **customer_profiles** | View only | Create, View, Update, Delete |
+
+---
+
 ## Troubleshooting
+
+**"new row violates row-level security policy":**
+- Run `setup-complete-rls.sql` to fix permissions
+- Verify policies exist: Supabase → Authentication → Policies
 
 **"No services available" in booking flow:**
 - Check that the `services` table exists in Supabase
-- Verify data was inserted (check Table Editor)
+- Run `seed-services.sql` to populate data
 - Check browser console for API errors
 
 **Services not showing up:**
 - Clear browser cache
-- Check Supabase RLS (Row Level Security) policies
+- Run `setup-complete-rls.sql` to fix RLS policies
 - Ensure services table has SELECT policy for anon users
