@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+// Note: Google Fonts (Playfair Display, Inter) can be added when deploying
+// For now using premium system fonts as fallback
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,8 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="en" style={{"--font-playfair": "Georgia, serif", "--font-inter": "system-ui, -apple-system, sans-serif"} as React.CSSProperties}>
+      <body className="font-sans antialiased">
         <nav className="bg-pink-600 text-white shadow-lg">
           <div className="container mx-auto px-4 py-4">
             <div className="flex justify-between items-center">
