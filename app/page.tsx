@@ -34,114 +34,122 @@ export default function Home() {
 
       {/* Hero Section - Vagaro-Style Booking Widget */}
       <section className="relative overflow-hidden bg-gradient-to-br from-pink-50 via-white to-purple-50">
-        {/* Decorative Background */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-pink-300 to-purple-300 rounded-full opacity-10 blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-purple-300 to-pink-300 rounded-full opacity-10 blur-3xl" />
-        </div>
-
-        <div className="container mx-auto px-6 py-16 md:py-24 relative">
-          <div className="max-w-5xl mx-auto text-center">
-            {/* Live Status Badge */}
-            <div className="mb-6 flex justify-center">
-              <BusinessHoursStatus />
+        <div className="container mx-auto px-6 py-16 md:py-24">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+            {/* Left side - Image */}
+            <div className="relative h-[400px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                src="/salon-storefront.jpg"
+                alt="Luxury Nail Spa Storefront"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
-              Book Your Perfect
-              <span className="bg-gradient-to-r from-pink-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"> Nail Experience</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-              Fort Myers' premier nail spa • 500+ happy clients • 4.0★ rating
-            </p>
+            {/* Right side - Booking Widget */}
+            <div>
+              {/* Live Status Badge */}
+              <div className="mb-6 flex justify-start">
+                <BusinessHoursStatus />
+              </div>
 
-            {/* Prominent Booking Search Widget */}
-            <div className="max-w-4xl mx-auto mb-12">
-              <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
-                <div className="grid md:grid-cols-3 gap-4 mb-6">
-                  {/* Service Type */}
-                  <div className="text-left">
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Service</label>
-                    <Link href="/book-appointment" className="block w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl hover:border-pink-400 transition-smooth">
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Select service...</span>
-                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </Link>
+              {/* Main Headline */}
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Book Your Perfect
+                <span className="bg-gradient-to-r from-pink-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"> Nail Experience</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-10 max-w-2xl">
+                Fort Myers' premier nail spa • 500+ happy clients • 4.0★ rating
+              </p>
+
+              {/* Prominent Booking Search Widget */}
+              <div className="max-w-4xl mx-auto mb-12">
+                <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
+                  <div className="grid md:grid-cols-3 gap-4 mb-6">
+                    {/* Service Type */}
+                    <div className="text-left">
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Service</label>
+                      <Link href="/book-appointment" className="block w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl hover:border-pink-400 transition-smooth">
+                        <div className="flex items-center justify-between">
+                          <span className="text-gray-600">Select service...</span>
+                          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
+                      </Link>
+                    </div>
+
+                    {/* Date */}
+                    <div className="text-left">
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Date</label>
+                      <Link href="/book-appointment" className="block w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl hover:border-pink-400 transition-smooth">
+                        <div className="flex items-center justify-between">
+                          <span className="text-gray-600">Choose date...</span>
+                          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                      </Link>
+                    </div>
+
+                    {/* Time */}
+                    <div className="text-left">
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Time</label>
+                      <Link href="/book-appointment" className="block w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl hover:border-pink-400 transition-smooth">
+                        <div className="flex items-center justify-between">
+                          <span className="text-gray-600">Select time...</span>
+                          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
 
-                  {/* Date */}
-                  <div className="text-left">
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Date</label>
-                    <Link href="/book-appointment" className="block w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl hover:border-pink-400 transition-smooth">
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Choose date...</span>
-                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                    </Link>
-                  </div>
-
-                  {/* Time */}
-                  <div className="text-left">
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Time</label>
-                    <Link href="/book-appointment" className="block w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl hover:border-pink-400 transition-smooth">
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Select time...</span>
-                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Search Button */}
-                <Link href="/book-appointment" className="btn-primary w-full text-lg py-4 shadow-xl shadow-pink-200">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                  Find Available Times
-                </Link>
-
-                {/* Quick Links */}
-                <div className="mt-6 flex items-center justify-center gap-4 text-sm">
-                  <Link href="/check-in" className="text-gray-600 hover:text-pink-600 font-medium transition-smooth">
-                    Walk-in Check-in
+                  {/* Search Button */}
+                  <Link href="/book-appointment" className="btn-primary w-full text-lg py-4 shadow-xl shadow-pink-200">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    Find Available Times
                   </Link>
-                  <span className="text-gray-300">|</span>
-                  <Link href="/my-appointments" className="text-gray-600 hover:text-pink-600 font-medium transition-smooth">
-                    View My Appointments
-                  </Link>
+
+                  {/* Quick Links */}
+                  <div className="mt-6 flex items-center justify-center gap-4 text-sm">
+                    <Link href="/check-in" className="text-gray-600 hover:text-pink-600 font-medium transition-smooth">
+                      Walk-in Check-in
+                    </Link>
+                    <span className="text-gray-300">|</span>
+                    <Link href="/my-appointments" className="text-gray-600 hover:text-pink-600 font-medium transition-smooth">
+                      View My Appointments
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Social Proof Strip */}
-            <div className="flex items-center justify-center gap-8 flex-wrap">
-              <div className="flex items-center gap-2">
-                <div className="flex -space-x-2">
+              {/* Social Proof Strip */}
+              <div className="flex items-center justify-center gap-8 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <div className="flex -space-x-2">
+                    {[...Array(4)].map((_, i) => (
+                      <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 border-2 border-white" />
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-600 ml-2 font-medium">500+ Happy Clients</span>
+                </div>
+                <div className="h-8 w-px bg-gray-300" />
+                <div className="flex items-center gap-1">
                   {[...Array(4)].map((_, i) => (
-                    <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 border-2 border-white" />
+                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
                   ))}
-                </div>
-                <span className="text-sm text-gray-600 ml-2 font-medium">500+ Happy Clients</span>
-              </div>
-              <div className="h-8 w-px bg-gray-300" />
-              <div className="flex items-center gap-1">
-                {[...Array(4)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-gray-300 fill-current" viewBox="0 0 20 20">
                     <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                   </svg>
-                ))}
-                <svg className="w-5 h-5 text-gray-300 fill-current" viewBox="0 0 20 20">
-                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                </svg>
-                <span className="text-sm text-gray-600 ml-2 font-medium">4.0 Rating (315 reviews)</span>
+                  <span className="text-sm text-gray-600 ml-2 font-medium">4.0 Rating (315 reviews)</span>
+                </div>
               </div>
             </div>
           </div>
